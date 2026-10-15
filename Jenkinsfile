@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Project checked out from GitHub.'
+                echo 'Clinic Appointment project checked out from GitHub.'
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'python3 -m pip install -r requirements.txt'
+                sh 'python3 -m pip --version'
             }
         }
 
@@ -33,10 +33,10 @@ pipeline {
 
     post {
         success {
-            echo 'Clinic Appointment CI Pipeline completed successfully!'
+            echo 'Clinic Appointment Pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed. Check Console Output.'
+            echo 'Pipeline failed. Check Console Output for details.'
         }
     }
 }

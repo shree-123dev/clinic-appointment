@@ -9,24 +9,24 @@ pipeline {
             }
         }
 
+        stage('Check Environment') {
+            steps {
+                sh 'java -version'
+                sh 'python3 --version'
+                sh 'git --version'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                bat 'python --version'
-                bat 'python -m pip install -r requirements.txt'
+                sh 'python3 -m pip --version'
             }
         }
 
         stage('Validate Application') {
             steps {
-                bat 'python -m py_compile app.py'
+                sh 'python3 -m py_compile app.py'
                 echo 'Python syntax validation passed.'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                bat 'docker --version'
-                bat 'docker build -t clinic-appointment .'
             }
         }
     }
@@ -36,7 +36,7 @@ pipeline {
             echo 'Clinic Appointment Pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed. Check the Console Output for details.'
+            echo 'Pipeline failed. Check Console Output for details.'
         }
     }
 }
